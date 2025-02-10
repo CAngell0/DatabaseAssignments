@@ -11,28 +11,28 @@
 --    full_name ASC;
 
 -- Query 2
-SELECT
-   firstName || ' ' || lastName AS full_name,
-   phone AS phone_number,
-   tuitionBalance AS tuition_balance
-FROM
-   students
-WHERE
-   phone LIKE '701%'
-ORDER BY
-   full_name ASC;
+-- SELECT
+--    firstName || ' ' || lastName AS full_name,
+--    phone AS phone_number,
+--    tuitionBalance AS tuition_balance
+-- FROM
+--    students
+-- WHERE
+--    phone LIKE '701%'
+-- ORDER BY
+--    full_name ASC;
 
 -- -- Query 3
--- SELECT
---    firstName AS first_name
--- FROM 
---    students;
-
--- -- Query 4
--- SELECT
---    studentID AS student_id
--- FROM
---    students;
+SELECT
+   UPPER(lastName) || ', ' || SUBSTR(firstName, 1, 1) AS formatted_name,
+   phone AS phone_number,
+   streetAddress AS address
+FROM 
+   students
+WHERE
+   phone LIKE '623%'
+ORDER BY
+   formatted_name ASC;
 
 -- -- Query 5
 -- SELECT
