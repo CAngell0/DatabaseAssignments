@@ -73,33 +73,46 @@
 --    score DESC;
 
 -- Query 7
-SELECT
-   CASE
-      WHEN state = 'NM' THEN  'New Mexico'
-      WHEN state = 'UT' THEN 'Utah'
-      WHEN state = 'ND' THEN 'North Dakota'
-      WHEN state = 'MT' THEN 'Montana'
-      WHEN state = 'SD' THEN 'South Dakota'
-      ELSE 'NO_NAME'
-   END AS full_state_name,
-   state,
-   city
-FROM
-   professors
-WHERE
-   (
-      firstName LIKE 'P%' OR 
-      lastName LIKE 'L%'
-   ) AND 
-   state IN ('NM', 'UT', 'ND', 'MT', 'SD')
-ORDER BY
-   state ASC;
-
--- -- Query 8
 -- SELECT
---    firstName AS first_name
+--    CASE
+--       WHEN state = 'NM' THEN  'New Mexico'
+--       WHEN state = 'UT' THEN 'Utah'
+--       WHEN state = 'ND' THEN 'North Dakota'
+--       WHEN state = 'MT' THEN 'Montana'
+--       WHEN state = 'SD' THEN 'South Dakota'
+--       ELSE 'NO_NAME'
+--    END AS full_state_name,
+--    state,
+--    city
 -- FROM
---    students;
+--    professors
+-- WHERE
+--    (
+--       firstName LIKE 'P%' OR 
+--       lastName LIKE 'L%'
+--    ) AND 
+--    state IN ('NM', 'UT', 'ND', 'MT', 'SD')
+-- ORDER BY
+--    state ASC;
+
+-- Query 8
+SELECT
+   (
+      firstName || ' ' || 
+      lastName || ' ' || 
+      streetAddress || ' ' || 
+      city || ' ' || 
+      state || ' ' || 
+      ZIP
+   ) AS student_address,
+   ZIP
+FROM
+   students
+WHERE
+   state = 'UT' AND
+   ROUND(ZIP, -2) >= 84500
+ORDER BY
+   student_address ASC;
 
 -- -- Query 9
 -- SELECT 
