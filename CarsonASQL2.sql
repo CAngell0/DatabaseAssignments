@@ -96,29 +96,37 @@
 --    state ASC;
 
 -- Query 8
-SELECT
-   (
-      firstName || ' ' || 
-      lastName || ' ' || 
-      streetAddress || ' ' || 
-      city || ' ' || 
-      state || ' ' || 
-      ZIP
-   ) AS student_address,
-   ZIP
-FROM
-   students
-WHERE
-   state = 'UT' AND
-   ROUND(ZIP, -2) >= 84500
-ORDER BY
-   student_address ASC;
-
--- -- Query 9
--- SELECT 
---    studentID AS student_id
+-- SELECT
+--    (
+--       firstName || ' ' || 
+--       lastName || ' ' || 
+--       streetAddress || ' ' || 
+--       city || ' ' || 
+--       state || ' ' || 
+--       ZIP
+--    ) AS student_address,
+--    ZIP
 -- FROM
---    students;
+--    students
+-- WHERE
+--    state = 'UT' AND
+--    ROUND(ZIP, -2) >= 84500
+-- ORDER BY
+--    student_address ASC;
+
+-- Query 9
+SELECT 
+   studentID AS student_id,
+   score,
+   sectionID AS section_id
+FROM
+   assignmentScore
+WHERE
+   assignmentTypeID = 'QZ' AND
+   assignmentNumber = 2 AND
+   sectionID BETWEEN 12000 AND 12100
+ORDER BY
+   sectionID DESC;
 
 -- -- Query 10
 -- SELECT
