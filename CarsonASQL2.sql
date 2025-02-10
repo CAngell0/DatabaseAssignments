@@ -25,7 +25,7 @@
 -- -- Query 3
 SELECT
    UPPER(lastName) || ', ' || SUBSTR(firstName, 1, 1) AS formatted_name,
-   phone AS phone_number,
+   LPAD(phone, 27, '*') AS phone_number,
    streetAddress AS address
 FROM 
    students
