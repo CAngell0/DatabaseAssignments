@@ -1,20 +1,26 @@
 -- Query 1
+-- SELECT
+--    firstName || ' ' || lastName AS full_name,
+--    phone AS phone_number,
+--    ZIP AS zip
+-- FROM
+--    students
+-- WHERE
+--    city = 'Medford'
+-- ORDER BY
+--    full_name ASC;
+
+-- Query 2
 SELECT
    firstName || ' ' || lastName AS full_name,
    phone AS phone_number,
-   ZIP AS zip
+   tuitionBalance AS tuition_balance
 FROM
    students
 WHERE
-   city = 'Medford'
+   phone LIKE '701%'
 ORDER BY
    full_name ASC;
-
--- -- Query 2
--- SELECT
---    phone
--- FROM
---    students;
 
 -- -- Query 3
 -- SELECT
