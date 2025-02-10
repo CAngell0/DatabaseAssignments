@@ -46,21 +46,31 @@
 --    MOD(tuitionBalance, 2) = 1;
 
 -- Query 5
-SELECT DISTINCT
-   ZIP AS zip
-FROM
-   students
-WHERE
-   city = 'Las Vegas' AND
-   state = 'NV'
-ORDER BY
-   zip ASC;
+-- SELECT DISTINCT
+--    ZIP AS zip
+-- FROM
+--    students
+-- WHERE
+--    city = 'Las Vegas' AND
+--    state = 'NV'
+-- ORDER BY
+--    zip ASC;
 
 -- -- Query 6
--- SELECT
---    studentID AS student_id
--- FROM
---    students;
+SELECT
+   studentID AS student_id,
+   score,
+   CASE
+      WHEN score >= 70 THEN 'PASS'
+      ELSE 'FAIL'
+   END AS pass_or_fail
+FROM
+   assignmentScore
+WHERE
+   assignmentTypeID = 'FI' AND
+   sectionID = 10702
+ORDER BY
+   score DESC;
 
 -- -- Query 7
 -- SELECT
