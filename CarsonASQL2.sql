@@ -115,21 +115,25 @@
 --    student_address ASC;
 
 -- Query 9
-SELECT 
-   studentID AS student_id,
-   score,
-   sectionID AS section_id
-FROM
-   assignmentScore
-WHERE
-   assignmentTypeID = 'QZ' AND
-   assignmentNumber = 2 AND
-   sectionID BETWEEN 12000 AND 12100
-ORDER BY
-   sectionID DESC;
+-- SELECT 
+--    studentID AS student_id,
+--    score,
+--    sectionID AS section_id
+-- FROM
+--    assignmentScore
+-- WHERE
+--    assignmentTypeID = 'QZ' AND
+--    assignmentNumber = 2 AND
+--    sectionID BETWEEN 12000 AND 12100
+-- ORDER BY
+--    sectionID DESC;
 
 -- -- Query 10
--- SELECT
---    first_name
--- FROM
---    dual;
+SELECT
+   'Carson Angell' AS full_name,
+   'Sushi' AS favorite_food,
+   37 AS favorite_number,
+   POWER(37, 2) AS squared,
+   LENGTH('Carson Angell') AS length
+FROM
+   dual;
