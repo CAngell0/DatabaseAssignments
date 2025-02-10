@@ -35,21 +35,26 @@
 --    formatted_name ASC;
 
 -- Query 4
-SELECT
-   studentID AS student_id,
-   tuitionBalance AS tuition_balance
+-- SELECT
+--    studentID AS student_id,
+--    tuitionBalance AS tuition_balance
+-- FROM
+--    students
+-- WHERE
+--    state = 'OR' AND
+--    tuitionBalance > 9000 AND
+--    MOD(tuitionBalance, 2) = 1;
+
+-- Query 5
+SELECT DISTINCT
+   ZIP AS zip
 FROM
    students
 WHERE
-   state = 'OR' AND
-   tuitionBalance > 9000 AND
-   MOD(tuitionBalance, 2) = 1;
-
--- -- Query 5
--- SELECT
---    ZIP AS zip
--- FROM
---    students;
+   city = 'Las Vegas' AND
+   state = 'NV'
+ORDER BY
+   zip ASC;
 
 -- -- Query 6
 -- SELECT
