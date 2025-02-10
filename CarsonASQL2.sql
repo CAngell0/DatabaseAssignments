@@ -23,16 +23,27 @@
 --    full_name ASC;
 
 -- -- Query 3
+-- SELECT
+--    UPPER(lastName) || ', ' || SUBSTR(firstName, 1, 1) AS formatted_name,
+--    LPAD(phone, 27, '*') AS phone_number,
+--    streetAddress AS address
+-- FROM 
+--    students
+-- WHERE
+--    phone LIKE '623%'
+-- ORDER BY
+--    formatted_name ASC;
+
+-- Query 4
 SELECT
-   UPPER(lastName) || ', ' || SUBSTR(firstName, 1, 1) AS formatted_name,
-   LPAD(phone, 27, '*') AS phone_number,
-   streetAddress AS address
-FROM 
+   studentID AS student_id,
+   tuitionBalance AS tuition_balance
+FROM
    students
 WHERE
-   phone LIKE '623%'
-ORDER BY
-   formatted_name ASC;
+   state = 'OR' AND
+   tuitionBalance > 9000 AND
+   MOD(tuitionBalance, 2) = 1;
 
 -- -- Query 5
 -- SELECT
