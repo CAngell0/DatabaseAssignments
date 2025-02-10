@@ -56,27 +56,44 @@
 -- ORDER BY
 --    zip ASC;
 
--- -- Query 6
-SELECT
-   studentID AS student_id,
-   score,
-   CASE
-      WHEN score >= 70 THEN 'PASS'
-      ELSE 'FAIL'
-   END AS pass_or_fail
-FROM
-   assignmentScore
-WHERE
-   assignmentTypeID = 'FI' AND
-   sectionID = 10702
-ORDER BY
-   score DESC;
-
--- -- Query 7
+-- Query 6
 -- SELECT
---    firstName AS first_name
+--    studentID AS student_id,
+--    score,
+--    CASE
+--       WHEN score >= 70 THEN 'PASS'
+--       ELSE 'FAIL'
+--    END AS pass_or_fail
 -- FROM
---    professors;
+--    assignmentScore
+-- WHERE
+--    assignmentTypeID = 'FI' AND
+--    sectionID = 10702
+-- ORDER BY
+--    score DESC;
+
+-- Query 7
+SELECT
+   CASE
+      WHEN state = 'NM' THEN  'New Mexico'
+      WHEN state = 'UT' THEN 'Utah'
+      WHEN state = 'ND' THEN 'North Dakota'
+      WHEN state = 'MT' THEN 'Montana'
+      WHEN state = 'SD' THEN 'South Dakota'
+      ELSE 'NO_NAME'
+   END AS full_state_name,
+   state,
+   city
+FROM
+   professors
+WHERE
+   (
+      firstName LIKE 'P%' OR 
+      lastName LIKE 'L%'
+   ) AND 
+   state IN ('NM', 'UT', 'ND', 'MT', 'SD')
+ORDER BY
+   state ASC;
 
 -- -- Query 8
 -- SELECT
