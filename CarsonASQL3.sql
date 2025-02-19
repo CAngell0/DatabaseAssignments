@@ -54,14 +54,16 @@ FROM
 WHERE 
    TO_CHAR(registrationDate, 'YYYY') = '2020' AND
    TO_CHAR(registrationDate, 'MON') = 'SEP' AND
-   finalClassGrade IN ('A+','A','A-','B+','B','B-','C+','C','C-')
+   finalClassGrade < 'C-'
 ORDER BY
    finalClassGrade ASC
 ;
 
 -- Query 5
 SELECT
-   "Date" as date
+   NEXT_DAY(SYSDATE, 'Friday') AS next_fri,
+   TO_DATE('04-08-' || TO_CHAR(SYSDATE, 'YYYY'), 'DD-MM-YYYY') + 182.625 AS next_half_birthday,
+   'Dog' AS chinese_zodiac
 FROM
    dual
 ;
