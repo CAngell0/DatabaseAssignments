@@ -106,9 +106,14 @@ ORDER BY
 
 -- Query 8
 SELECT
-   hireDate
+   firstName || ' ' || lastName AS full_name,
+   FLOOR(((SYSDATE - hireDate) / 365.25) * 12) AS months_employed
 FROM
    professors
+WHERE
+   phone LIKE '701%'
+ORDER BY
+   months_employed DESC
 ;
 
 -- Query 10
