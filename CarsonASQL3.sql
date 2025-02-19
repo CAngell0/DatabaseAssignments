@@ -70,9 +70,22 @@ FROM
 
 -- Query 6
 SELECT
-   courseID
+   courseID AS course_id,
+   sectionID AS section_id,
+   sectionStartDate AS section_start_date,
+   TO_CHAR(sectionStartDate, 'HH:MI') AS start_time
+   -- TO_CHAR(sectionStartDate, '')
 FROM
    sections
+WHERE
+   TO_CHAR(sectionStartDate, 'YYYY') = '2019' AND
+   TO_NUMBER(TO_CHAR(sectionStartDate, 'MM')) BETWEEN 7 AND 8 AND
+   TO_CHAR(sectionStartDate, 'HH:MI') = '07:30'
+ORDER BY
+   capacity ASC,
+   sectionID DESC,
+   courseID DESC,
+   sectionStartDate DESC
 ;
 
 -- Query 7
