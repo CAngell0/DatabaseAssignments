@@ -14,9 +14,15 @@ ORDER BY
 
 -- Query 2
 SELECT
-   courseID
+   courseID AS course_id,
+   sectionID AS section_id,
+   TO_CHAR(sectionStartDate, 'DD/MM/YYYY HH:MI') AS start_date
 FROM
    sections
+WHERE
+   locationID = 8396
+ORDER BY
+   start_date ASC
 ;
 
 -- Query 3
