@@ -22,7 +22,7 @@ WHERE
 ORDER BY
    full_name ASC;
 
--- -- Query 3
+-- Query 3
 SELECT
    UPPER(lastName) || ', ' || SUBSTR(firstName, 1, 1) AS formatted_name,
    LPAD(phone, 27, '*') AS phone_number,
@@ -80,7 +80,6 @@ SELECT
       WHEN state = 'ND' THEN 'North Dakota'
       WHEN state = 'MT' THEN 'Montana'
       WHEN state = 'SD' THEN 'South Dakota'
-      ELSE 'NO_NAME'
    END AS full_state_name,
    state,
    city
