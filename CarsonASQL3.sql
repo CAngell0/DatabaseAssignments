@@ -90,9 +90,18 @@ ORDER BY
 
 -- Query 7
 SELECT
-   admissionDate
+   firstName || ' ' || lastName AS full_name
 FROM 
    students
+WHERE
+   TO_CHAR(admissionDate, 'YYYY') = '2022' AND
+   (
+      TO_CHAR(admissionDate, 'DD') = '13' OR
+      TO_CHAR(admissionDate, 'DD') = '29'
+   )
+ORDER BY 
+   firstName ASC,
+   lastName ASC
 ;
 
 -- Query 8
