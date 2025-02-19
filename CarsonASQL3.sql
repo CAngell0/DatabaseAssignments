@@ -25,13 +25,6 @@ ORDER BY
    start_date ASC
 ;
 
--- Query 4
-SELECT
-   professorID
-FROM
-   sections
-;
-
 -- Query 3
 SELECT
    courseID AS course_id,
@@ -49,6 +42,21 @@ WHERE
    MOD(professorID, 2) = 0
 ORDER BY
    courseID || sectionID DESC
+;
+
+-- Query 4
+SELECT
+   studentID AS student_id,
+   sectionID AS section_id,
+   finalClassGrade AS final_class_grade
+FROM
+   registration
+WHERE 
+   TO_CHAR(registrationDate, 'YYYY') = '2020' AND
+   TO_CHAR(registrationDate, 'MON') = 'SEP' AND
+   finalClassGrade IN ('A+','A','A-','B+','B','B-','C+','C','C-')
+ORDER BY
+   finalClassGrade ASC
 ;
 
 -- Query 5
