@@ -116,6 +116,14 @@ ORDER BY
    months_employed DESC
 ;
 
+SELECT DISTINCT
+   TO_CHAR(sectionStartDate, 'HH:MI') AS start_time
+FROM
+   sections
+ORDER BY
+   start_time ASC
+;
+
 -- Query 10
 SELECT
    registrationDate
