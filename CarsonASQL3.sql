@@ -126,7 +126,13 @@ ORDER BY
 
 -- Query 10
 SELECT
-   registrationDate
+   studentID AS student_id,
+   sectionID AS section_id,
+   TO_CHAR(registrationDate, 'HH:MI') AS time_enrolled
 FROM
    registration
+WHERE
+   TO_CHAR(registrationDate, 'HH:MI') = '01:35'
+ORDER BY
+   student_id DESC
 ;
