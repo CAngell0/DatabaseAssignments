@@ -1,8 +1,15 @@
 -- Query 1
 SELECT
-   firstName
+   firstName || ' ' || lastName AS full_name,
+   phone AS phone_number,
+   TO_CHAR(admissionDate, 'YYYY') AS admission_year
 FROM
    students
+WHERE
+   TO_CHAR(admissionDate, 'DD') = '13' AND
+   TO_CHAR(admissionDate, 'MON') = 'JUN'
+ORDER BY
+   admissionDate || lastName ASC
 ;
 
 -- Query 2
