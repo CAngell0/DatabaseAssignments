@@ -25,18 +25,30 @@ ORDER BY
    start_date ASC
 ;
 
--- Query 3
+-- Query 4
 SELECT
    professorID
 FROM
    sections
 ;
 
--- Query 4
+-- Query 3
 SELECT
-   studentID
+   courseID AS course_id,
+   sectionID AS section_id,
+   professorID as professor_id,
+   sectionStartDate AS start_date,
+   capacity
 FROM
-   registration
+   sections
+WHERE
+   TO_CHAR(sectionStartDate, 'MON') = 'AUG' AND
+   TO_CHAR(sectionStartDate, 'YYYY') = '2020' AND
+   MOD(TO_NUMBER(TO_CHAR(sectionStartDate, 'DD')), 2) = 1 AND
+   MOD(courseID, 5) = 0 AND
+   MOD(professorID, 2) = 0
+ORDER BY
+   courseID || sectionID DESC
 ;
 
 -- Query 5
