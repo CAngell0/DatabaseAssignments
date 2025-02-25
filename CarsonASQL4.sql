@@ -1,6 +1,6 @@
 -- Query 1
 SELECT
-   tuitionBalance
+   ROUND(AVG(tuitionBalance), 2) AS tuition_average
 FROM
    students
 ;
