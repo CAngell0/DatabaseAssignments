@@ -58,9 +58,18 @@ ORDER BY
 
 -- Query 6
 SELECT
-   sectionID AS section_id
+   sectionID AS section_id,
+   studentID AS student_id,
+   TO_CHAR(ROUND(AVG(score), 4), '99.0000') AS average_grade
 FROM
-   registration
+   assignmentScore
+WHERE
+   sectionID = 30775
+GROUP BY
+   sectionID,
+   studentID
+ORDER BY
+   average_grade DESC
 ;
 
 -- Query 7
