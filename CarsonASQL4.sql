@@ -74,9 +74,16 @@ ORDER BY
 
 -- Query 7
 SELECT
-   sectionID AS section_id
+   studentID AS student_id,
+   COUNT(*) AS section_count
 FROM
    registration
+WHERE
+   studentID IN (1398, 2847, 2735, 2959, 3200)
+GROUP BY
+   studentID
+ORDER BY 
+   section_count DESC
 ;
 
 -- Query 8
