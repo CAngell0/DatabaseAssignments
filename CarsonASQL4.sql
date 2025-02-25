@@ -7,9 +7,11 @@ FROM
 
 -- Query 2
 SELECT
-   admissionDate
+   COUNT(*) AS student_count
 FROM
    students
+WHERE
+   TO_CHAR(admissionDate, 'YYYY') = '2015'
 ;
 
 -- Query 3
