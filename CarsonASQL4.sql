@@ -88,9 +88,19 @@ ORDER BY
 
 -- Query 8
 SELECT
-   score
+   sectionID AS section_id,
+   MIN(score) AS lowest_score
 FROM
    assignmentScore
+WHERE
+   assignmentTypeID = 'QZ'
+GROUP BY
+   sectionID
+HAVING
+   MIN(score) >= 80 AND
+   COUNT(*) < 5
+ORDER BY
+   lowest_score ASC
 ;
 
 -- Query 9
