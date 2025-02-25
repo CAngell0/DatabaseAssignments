@@ -105,9 +105,18 @@ ORDER BY
 
 -- Query 9
 SELECT
-   city
+   city,
+   COUNT(*) AS student_count
 FROM
    students
+WHERE
+   city < 'M'
+GROUP BY
+   city
+HAVING
+   COUNT(*) BETWEEN 20 AND 100
+ORDER BY
+   student_count ASC
 ;
 
 -- Query 10
