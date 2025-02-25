@@ -42,9 +42,18 @@ HAVING
 
 -- Query 5
 SELECT
-   sectionID AS section_id
+   sectionID AS section_id,
+   COUNT(*) AS student_number
 FROM
    registration
+WHERE
+   TO_CHAR(registrationDate, 'DY') = 'WED'
+GROUP BY
+   sectionID
+HAVING
+   COUNT(*) > 3
+ORDER BY
+   student_number DESC
 ;
 
 -- Query 6
