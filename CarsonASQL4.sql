@@ -27,9 +27,17 @@ WHERE
 
 -- Query 4
 SELECT
-   city
+   city,
+   state,
+   COUNT(*) AS student_count
 FROM
    students
+GROUP BY
+   city,
+   state
+HAVING
+   COUNT(*) > 50 OR
+   COUNT(*) < 5
 ;
 
 -- Query 5
