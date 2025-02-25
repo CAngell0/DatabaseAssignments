@@ -121,7 +121,17 @@ ORDER BY
 
 -- Query 10
 SELECT
-   sectionID AS section_id
+   sectionID AS section_id,
+   COUNT(*) AS participation_grade_count,
+   MIN(score) AS lowest_grade
 FROM
    assignmentScore
+WHERE
+   assignmentTypeID = 'PA'
+GROUP BY
+   sectionID
+HAVING
+   COUNT(*) > 35
+ORDER BY
+   participation_grade_count ASC
 ;
