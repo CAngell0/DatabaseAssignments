@@ -16,9 +16,13 @@ WHERE
 
 -- Query 3
 SELECT
-   score
+   ROUND(AVG(score), 2) AS average_score,
+   MAX(score) AS highest_score,
+   MIN(score) AS lowest_score
 FROM
    assignmentScore
+WHERE
+   assignmentTypeID = 'FI'
 ;
 
 -- Query 4
