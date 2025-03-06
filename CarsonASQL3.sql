@@ -74,7 +74,6 @@ SELECT
    sectionID AS section_id,
    sectionStartDate AS section_start_date,
    TO_CHAR(sectionStartDate, 'HH:MI') AS start_time
-   -- TO_CHAR(sectionStartDate, '')
 FROM
    sections
 WHERE
