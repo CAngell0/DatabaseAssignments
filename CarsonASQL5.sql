@@ -166,20 +166,70 @@ HAVING
 
 -- Query 8
 SELECT
-   firstName || ' ' || lastName AS full_name
+   stu.firstName || ' ' || stu.lastName AS full_name,
+   stu.phone,
+   TO_CHAR(reg.REGISTRATIONDATE, 'MON/DD/YYYY HH:MI')
 FROM
-   students
+   students stu
+JOIN
+   registration reg
+ON
+   reg.studentID = stu.studentID
+WHERE
+   TO_CHAR(reg.registrationDate, 'MON/YYYY') = 'JAN/2020' AND
+   TO_CHAR(reg.registrationDate, 'HH:MI') < '09:00' AND
+   TO_CHAR(reg.registrationDate, 'AM') = 'AM'
+
+ORDER BY
+   stu.firstName ASC,
+   stu.lastName ASC
 ;
 
 -- Query 9
 SELECT
-   courseTitle AS course_title
+   cour.subjectCode || ' ' || cour.courseNumber AS class,
+   COUNT(assign.assignmentTypeID) AS max
 FROM
-   courses
+   courses cour
+JOIN 
+   sections sec
+ON
+   sec.courseID = cour.courseID
+JOIN
+   assignmentScore assign
+ON
+   assign.sectionID = sec.sectionID
+WHERE
+   cour.subjectCode = 'WEB' AND
+   assign.assignmentTypeID = 'GP'
+GROUP BY
+   cour.subjectCode || ' ' || cour.courseNumber
+HAVING
+   COUNT(assign.assignmentTypeID) >= 2
+ORDER BY
+   max,
+   class
 ;
 
 SELECT
-   sectionID AS section_id
+   sec.sectionID AS section_id,
+   TO_CHAR(ROUND(AVG(assign.score), 2), '99.00') AS average_score
 FROM
-   assignmentScore
+   sections sec
+JOIN
+   assignmentScore assign
+ON
+   assign.sectionID = sec.sectionID
+JOIN
+   professors prof
+ON
+   prof.professorID = sec.professorID
+WHERE
+   assign.assignmentTypeID = 'MT' AND
+   sec.capacity >= 15 AND
+   prof.firstName LIKE 'Co%'
+GROUP BY
+   sec.sectionID
+ORDER BY
+   section_id DESC
 ;
