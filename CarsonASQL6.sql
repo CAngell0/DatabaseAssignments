@@ -1,3 +1,4 @@
+-- * Complete
 -- Query 1
 SELECT
    firstName || ' ' || lastName AS full_name
@@ -15,7 +16,9 @@ ORDER BY
    full_name ASC
 ;
 
--- Query 2 --todo
+
+-- * Complete
+-- Query 2 
 SELECT
    stu.firstName || ' ' || stu.lastName AS full_name,
    stu.studentID AS student_id,
@@ -40,6 +43,8 @@ ORDER BY
    registration_amount DESC
 ;
 
+
+-- * Complete
 -- Query 3 --todo
 SELECT
    SUBSTR(prof.lastName, 1, 1) AS letter,
@@ -62,7 +67,7 @@ ORDER BY
 ;
 
 
-
+-- * Complete
 -- Query 4
 SELECT DISTINCT
    sect.sectionID AS section_id,
@@ -90,44 +95,129 @@ ORDER BY
    final_score ASC
 ;
 
+-- * Complete
 -- Query 5
 SELECT
-   subjectCode
+   MAX(coun.course_count) AS most_sections
 FROM
-   courses
+   (
+      SELECT
+         COUNT(*) AS course_count,
+         sect.courseID AS course_id
+      FROM
+         sections sect
+      WHERE
+         sect.semester LIKE 'FAL%'
+      GROUP BY
+         sect.courseID
+   ) coun
 ;
 
+
+-- * Complete
 -- Query 6
 SELECT
-   city
+   prof.city,
+   prof.state,
+   prof.zip,
+   COUNT(*) AS instructor_count
 FROM
-   professors
+   professors prof
+GROUP BY
+   prof.city,
+   prof.state,
+   prof.zip
+HAVING
+   COUNT(*) > 10
+ORDER BY
+   instructor_count DESC
 ;
 
+
+-- * Complete
 -- Query 7
 SELECT
-   assignmentTypeID
+   code.description,
+   COUNT(*) AS number_of_grades
 FROM
-   assignmentScore
+   assignmentScore score
+JOIN
+   assignmentCode code
+ON
+   code.assignmentTypeID = score.assignmentTypeID
+GROUP BY
+   code.description
+ORDER BY
+   number_of_grades ASC
 ;
 
+
+-- * Complete
 -- Query 8
-SELECT
-   firstName AS first_name
+SELECT DISTINCT
+   prof.firstName AS first_name,
+   prof.lastName AS last_name
 FROM
-   professors
+   sections sect
+JOIN
+   professors prof
+ON
+   prof.professorID = sect.professorID
+WHERE
+   sect.courseID IN (
+      SELECT
+         cour.courseID
+      FROM
+         courses cour
+      WHERE
+         cour.subjectCode || ' ' || cour.courseNumber = 'CS 1410' OR
+         cour.subjectCode || ' ' || cour.courseNumber = 'CS 1400'
+   )
 ;
 
+
+-- * Complete
 -- Query 9
 SELECT
-   firstName AS first_name
+   stu.firstName AS first_name,
+   stu.lastName AS last_name,
+   score.assignmentTypeID AS assignment_type,
+   COUNT(*) AS count
 FROM
-   students
+   students stu
+JOIN
+   assignmentScore score
+ON
+   score.studentID = stu.studentID
+WHERE
+   score.assignmentTypeID != 'HM' AND
+   score.assignmentTypeID != 'QZ'
+GROUP BY
+   stu.firstName,
+   stu.lastName,
+   score.assignmentTypeID
+HAVING
+   COUNT(*) > 40
+ORDER BY
+   first_name ASC,
+   last_name ASC
 ;
 
+
+-- * Completed
 -- Query 10
 SELECT
-   admissionDate
+   stu.firstName AS first_name,
+   stu.lastName AS last_name
 FROM
-   students
+   students stu
+WHERE
+   TO_CHAR(stu.admissionDate, 'MM/DD/YYYY') = (
+      SELECT
+         TO_CHAR(MIN(admissionDate), 'MM/DD/YYYY')
+      FROM
+         students
+   )
+ORDER BY
+   last_name ASC
 ;
