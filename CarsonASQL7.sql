@@ -30,9 +30,22 @@ WITH cs_courses AS (
 --todo
 -- Query 1
 SELECT
-   sec.sectionID AS section_id
+   prof.firstName || ' ' || prof.lastName AS full_name
 FROM
-   sections
+   sections sec
+JOIN
+   professors prof
+ON
+   prof.courseID = sec.courseID
+WHERE
+   sec.sectionID NOT IN (
+      SELECT DISTINCT
+         asig.sectionID AS section_id
+      FROM
+         assignmentScore asig
+      WHERE
+         assignmentTypeID = 'GP'
+   )
 ;
 
 -- Get section ids that have a group project attached to them. Use NOT IN to get the correct section ids
