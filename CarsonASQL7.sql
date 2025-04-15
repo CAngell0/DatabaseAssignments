@@ -313,6 +313,33 @@ WHERE
 --    coun.student_count >= sec.capacity
 -- ;
 
+--* Complete
 -- Query 10
-
+-- This query gets the student id, first and last name for students that are
+-- enrolled in classes that start at 12:30 and whose last name starts with T.
+-- SELECT DISTINCT
+--    -- Gets the student id, first name, and last name
+--    stu.student_id,
+--    stu.first_name,
+--    stu.last_name
+-- FROM
+--    stu_classes stu
+-- JOIN
+--    -- Gets the ids for the courses that start at 12:30
+--    (
+--       SELECT
+--          courseID AS course_id
+--       FROM
+--          sections
+--       WHERE 
+--          TO_CHAR(sectionStartDate, 'HH:MI') = '12:30'
+--    ) cour
+-- ON
+--    -- This matches the course ids correlated to each student to the results of the above subquery
+--    -- In summary, it gets the students that are enrolled in a course that starts at 12:30
+--    cour.course_id = stu.course_id
+-- WHERE
+--    -- Reduces the student results to only students that have a last name starting with "T"
+--    SUBSTR(stu.last_name, 1) >= 'T'
+-- ;
 
